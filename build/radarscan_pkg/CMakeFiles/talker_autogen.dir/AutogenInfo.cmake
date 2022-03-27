@@ -34,6 +34,6 @@ set(AM_UIC_SEARCH_PATHS )
 set(AM_RCC_SOURCES "/home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/resource.qrc")
 set(AM_RCC_BUILDS "/home/giangtin/aev/radarScanQT_ROS/build/radarscan_pkg/talker_autogen/6WJNPILU4A/qrc_resource.cpp")
 set(AM_RCC_OPTIONS "{-name;resource}")
-set(AM_RCC_INPUTS "{/home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/RadarScanBG.png;/home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/carNormal.png;/home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/car0.png;/home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/carWarning.png;/home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/carIcon.ico;/home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/carAccidence.png;/home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/carNone.png}")
+set(AM_RCC_INPUTS "{/home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/RadarScanBG.png;/home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/carNormal.png;/home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/car0.png;/home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/carSafety.png;/home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/carWarning.png;/home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/carIcon.ico;/home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/carAccidence.png}")
 # Configurations options
 set(AM_CONFIG_SUFFIX_Debug "_Debug")

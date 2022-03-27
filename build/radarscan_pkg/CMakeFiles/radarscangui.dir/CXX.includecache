@@ -20,14 +20,28 @@ QtCore/qmetatype.h
 ZR2NAYY6HS/moc_radarscan.cpp
 /home/giangtin/aev/radarScanQT_ROS/build/radarscan_pkg/radarscangui_autogen/ZR2NAYY6HS/moc_radarscan.cpp
 
+/home/giangtin/aev/radarScanQT_ROS/devel/include/radarscan_pkg/ttcRadar_msg.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+
 /home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/include/radarscan_pkg/radarscan.h
 QWidget
 -
 QApplication
 -
 QTimer
--
-std_msgs/String.h
 -
 vector
 -
@@ -37,6 +51,8 @@ iostream
 -
 ros/ros.h
 -
+std_msgs/String.h
+-
 QPixmap
 -
 QGraphicsScene
@@ -44,6 +60,8 @@ QGraphicsScene
 QGraphicsPixmapItem
 -
 QDebug
+-
+radarscan_pkg/ttcRadar_msg.h
 -
 
 /home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/nodes/radarscangui.cpp
@@ -1792,6 +1810,52 @@ QtGui/qtguiglobal.h
 QtCore/qprocessordetection.h
 -
 
+/usr/include/x86_64-linux-gnu/qt5/QtGui/qtextcursor.h
+QtGui/qtguiglobal.h
+-
+QtCore/qstring.h
+-
+QtCore/qshareddata.h
+-
+QtGui/qtextformat.h
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtGui/qtextdocument.h
+QtGui/qtguiglobal.h
+-
+QtCore/qobject.h
+-
+QtCore/qsize.h
+-
+QtCore/qrect.h
+-
+QtCore/qvariant.h
+-
+QtGui/qfont.h
+-
+QtCore/qurl.h
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtGui/qtextformat.h
+QtGui/qtguiglobal.h
+-
+QtGui/qcolor.h
+-
+QtGui/qfont.h
+-
+QtCore/qshareddata.h
+-
+QtCore/qvector.h
+-
+QtCore/qvariant.h
+-
+QtGui/qpen.h
+-
+QtGui/qbrush.h
+-
+QtGui/qtextoption.h
+-
+
 /usr/include/x86_64-linux-gnu/qt5/QtGui/qtextoption.h
 QtGui/qtguiglobal.h
 -
@@ -1900,9 +1964,17 @@ qgraphicsview.h
 qheaderview.h
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qheaderview.h
 
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLabel
+qlabel.h
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlabel.h
+
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton
 qpushbutton.h
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qpushbutton.h
+
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QTextEdit
+qtextedit.h
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtextedit.h
 
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget
 qwidget.h
@@ -2070,6 +2142,12 @@ QtWidgets/qtwidgetsglobal.h
 QtWidgets/qabstractitemview.h
 -
 
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlabel.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qframe.h
+-
+
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qpushbutton.h
 QtWidgets/qtwidgetsglobal.h
 -
@@ -2162,6 +2240,20 @@ QtWidgets/qwidget.h
 QtGui/qicon.h
 -
 
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtextedit.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qabstractscrollarea.h
+-
+QtGui/qtextdocument.h
+-
+QtGui/qtextoption.h
+-
+QtGui/qtextcursor.h
+-
+QtGui/qtextformat.h
+-
+
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgets-config.h
 
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgetsglobal.h
@@ -2215,7 +2307,11 @@ QtWidgets/QGraphicsView
 -
 QtWidgets/QHeaderView
 -
+QtWidgets/QLabel
+-
 QtWidgets/QPushButton
+-
+QtWidgets/QTextEdit
 -
 QtWidgets/QWidget
 -

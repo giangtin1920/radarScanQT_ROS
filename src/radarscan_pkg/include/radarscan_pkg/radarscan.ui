@@ -19,8 +19,8 @@
   <widget class="QGraphicsView" name="graphicsView_radarScan">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>30</y>
+     <x>50</x>
+     <y>20</y>
      <width>225</width>
      <height>460</height>
     </rect>
@@ -36,8 +36,8 @@ border: 5px solid rgb(75, 85, 117);
   <widget class="QPushButton" name="btnFindxy">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>332</y>
+     <x>310</x>
+     <y>322</y>
      <width>152</width>
      <height>25</height>
     </rect>
@@ -46,30 +46,182 @@ border: 5px solid rgb(75, 85, 117);
     <string>find</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btnAdd">
+  <widget class="QPushButton" name="paramTTC">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>396</y>
+     <x>310</x>
+     <y>386</y>
      <width>152</width>
      <height>25</height>
     </rect>
    </property>
    <property name="text">
-    <string>add</string>
+    <string>paramTTC</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnClr">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>460</y>
+     <x>310</x>
+     <y>450</y>
      <width>152</width>
      <height>25</height>
     </rect>
    </property>
    <property name="text">
     <string>clear</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="txtTTCAccidence">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>320</y>
+     <width>104</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 5px;
+background-color: rgba(255, 255, 255, 0);
+border-radius: 10px;
+border: 5px solid rgb(75, 85, 117);
+color:rgb(255,255,255);
+</string>
+   </property>
+   <property name="html">
+    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;3&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="txtTTCWarning">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>370</y>
+     <width>104</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 5px;
+background-color: rgba(255, 255, 255, 0);
+border-radius: 10px;
+border: 5px solid rgb(75, 85, 117);
+color:rgb(255,255,255);
+</string>
+   </property>
+   <property name="html">
+    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;30&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="txtTTCSafety">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>430</y>
+     <width>104</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 5px;
+background-color: rgba(255, 255, 255, 0);
+border-radius: 10px;
+border: 5px solid rgb(75, 85, 117);
+color:rgb(255,255,255);
+</string>
+   </property>
+   <property name="html">
+    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;50&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>340</y>
+     <width>121</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>txtTTCAccidence</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>380</y>
+     <width>121</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>txtTTCWarning</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>440</y>
+     <width>121</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>txtTTCSafety</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblTTC">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>40</y>
+     <width>301</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+color: rgb(255, 255, 255);
+font: 100 48pt &quot;Source Sans Pro SemiBold&quot;;
+background-color: rgba(255, 255, 255, 0);</string>
+   </property>
+   <property name="text">
+    <string>TTC</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblVel">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>160</y>
+     <width>281</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+font:100 48pt &quot;Source Sans Pro SemiBold&quot;;
+background-color: rgba(255, 255, 255, 0);
+</string>
+   </property>
+   <property name="text">
+    <string>TTC</string>
    </property>
   </widget>
  </widget>

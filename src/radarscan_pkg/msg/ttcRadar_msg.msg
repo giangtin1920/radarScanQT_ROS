@@ -1,10 +1,14 @@
-uint8 isObj
 uint8 numObj
 uint8[] IdObj
-uint8[] isApproach
+bool[] isApproach
 float32[] alpha
 float32[] posX
 float32[] posY
-float32[] distance
-float32[] velocity
+float32[] dis
+float32[] vel
 float32[] ttc
+string[] safetyZone
+
+uint32 msg_counter
+bool isObject
+float32 distance

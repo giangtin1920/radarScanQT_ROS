@@ -18,24 +18,21 @@ class ttcRadar_msg {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
-      this.isObj = null;
       this.numObj = null;
       this.IdObj = null;
       this.isApproach = null;
       this.alpha = null;
       this.posX = null;
       this.posY = null;
-      this.distance = null;
-      this.velocity = null;
+      this.dis = null;
+      this.vel = null;
       this.ttc = null;
+      this.safetyZone = null;
+      this.msg_counter = null;
+      this.isObject = null;
+      this.distance = null;
     }
     else {
-      if (initObj.hasOwnProperty('isObj')) {
-        this.isObj = initObj.isObj
-      }
-      else {
-        this.isObj = 0;
-      }
       if (initObj.hasOwnProperty('numObj')) {
         this.numObj = initObj.numObj
       }
@@ -72,17 +69,17 @@ class ttcRadar_msg {
       else {
         this.posY = [];
       }
-      if (initObj.hasOwnProperty('distance')) {
-        this.distance = initObj.distance
+      if (initObj.hasOwnProperty('dis')) {
+        this.dis = initObj.dis
       }
       else {
-        this.distance = [];
+        this.dis = [];
       }
-      if (initObj.hasOwnProperty('velocity')) {
-        this.velocity = initObj.velocity
+      if (initObj.hasOwnProperty('vel')) {
+        this.vel = initObj.vel
       }
       else {
-        this.velocity = [];
+        this.vel = [];
       }
       if (initObj.hasOwnProperty('ttc')) {
         this.ttc = initObj.ttc
@@ -90,31 +87,61 @@ class ttcRadar_msg {
       else {
         this.ttc = [];
       }
+      if (initObj.hasOwnProperty('safetyZone')) {
+        this.safetyZone = initObj.safetyZone
+      }
+      else {
+        this.safetyZone = [];
+      }
+      if (initObj.hasOwnProperty('msg_counter')) {
+        this.msg_counter = initObj.msg_counter
+      }
+      else {
+        this.msg_counter = 0;
+      }
+      if (initObj.hasOwnProperty('isObject')) {
+        this.isObject = initObj.isObject
+      }
+      else {
+        this.isObject = false;
+      }
+      if (initObj.hasOwnProperty('distance')) {
+        this.distance = initObj.distance
+      }
+      else {
+        this.distance = 0.0;
+      }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type ttcRadar_msg
-    // Serialize message field [isObj]
-    bufferOffset = _serializer.uint8(obj.isObj, buffer, bufferOffset);
     // Serialize message field [numObj]
     bufferOffset = _serializer.uint8(obj.numObj, buffer, bufferOffset);
     // Serialize message field [IdObj]
     bufferOffset = _arraySerializer.uint8(obj.IdObj, buffer, bufferOffset, null);
     // Serialize message field [isApproach]
-    bufferOffset = _arraySerializer.uint8(obj.isApproach, buffer, bufferOffset, null);
+    bufferOffset = _arraySerializer.bool(obj.isApproach, buffer, bufferOffset, null);
     // Serialize message field [alpha]
     bufferOffset = _arraySerializer.float32(obj.alpha, buffer, bufferOffset, null);
     // Serialize message field [posX]
     bufferOffset = _arraySerializer.float32(obj.posX, buffer, bufferOffset, null);
     // Serialize message field [posY]
     bufferOffset = _arraySerializer.float32(obj.posY, buffer, bufferOffset, null);
-    // Serialize message field [distance]
-    bufferOffset = _arraySerializer.float32(obj.distance, buffer, bufferOffset, null);
-    // Serialize message field [velocity]
-    bufferOffset = _arraySerializer.float32(obj.velocity, buffer, bufferOffset, null);
+    // Serialize message field [dis]
+    bufferOffset = _arraySerializer.float32(obj.dis, buffer, bufferOffset, null);
+    // Serialize message field [vel]
+    bufferOffset = _arraySerializer.float32(obj.vel, buffer, bufferOffset, null);
     // Serialize message field [ttc]
     bufferOffset = _arraySerializer.float32(obj.ttc, buffer, bufferOffset, null);
+    // Serialize message field [safetyZone]
+    bufferOffset = _arraySerializer.string(obj.safetyZone, buffer, bufferOffset, null);
+    // Serialize message field [msg_counter]
+    bufferOffset = _serializer.uint32(obj.msg_counter, buffer, bufferOffset);
+    // Serialize message field [isObject]
+    bufferOffset = _serializer.bool(obj.isObject, buffer, bufferOffset);
+    // Serialize message field [distance]
+    bufferOffset = _serializer.float32(obj.distance, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -122,26 +149,32 @@ class ttcRadar_msg {
     //deserializes a message object of type ttcRadar_msg
     let len;
     let data = new ttcRadar_msg(null);
-    // Deserialize message field [isObj]
-    data.isObj = _deserializer.uint8(buffer, bufferOffset);
     // Deserialize message field [numObj]
     data.numObj = _deserializer.uint8(buffer, bufferOffset);
     // Deserialize message field [IdObj]
     data.IdObj = _arrayDeserializer.uint8(buffer, bufferOffset, null)
     // Deserialize message field [isApproach]
-    data.isApproach = _arrayDeserializer.uint8(buffer, bufferOffset, null)
+    data.isApproach = _arrayDeserializer.bool(buffer, bufferOffset, null)
     // Deserialize message field [alpha]
     data.alpha = _arrayDeserializer.float32(buffer, bufferOffset, null)
     // Deserialize message field [posX]
     data.posX = _arrayDeserializer.float32(buffer, bufferOffset, null)
     // Deserialize message field [posY]
     data.posY = _arrayDeserializer.float32(buffer, bufferOffset, null)
-    // Deserialize message field [distance]
-    data.distance = _arrayDeserializer.float32(buffer, bufferOffset, null)
-    // Deserialize message field [velocity]
-    data.velocity = _arrayDeserializer.float32(buffer, bufferOffset, null)
+    // Deserialize message field [dis]
+    data.dis = _arrayDeserializer.float32(buffer, bufferOffset, null)
+    // Deserialize message field [vel]
+    data.vel = _arrayDeserializer.float32(buffer, bufferOffset, null)
     // Deserialize message field [ttc]
     data.ttc = _arrayDeserializer.float32(buffer, bufferOffset, null)
+    // Deserialize message field [safetyZone]
+    data.safetyZone = _arrayDeserializer.string(buffer, bufferOffset, null)
+    // Deserialize message field [msg_counter]
+    data.msg_counter = _deserializer.uint32(buffer, bufferOffset);
+    // Deserialize message field [isObject]
+    data.isObject = _deserializer.bool(buffer, bufferOffset);
+    // Deserialize message field [distance]
+    data.distance = _deserializer.float32(buffer, bufferOffset);
     return data;
   }
 
@@ -152,10 +185,13 @@ class ttcRadar_msg {
     length += 4 * object.alpha.length;
     length += 4 * object.posX.length;
     length += 4 * object.posY.length;
-    length += 4 * object.distance.length;
-    length += 4 * object.velocity.length;
+    length += 4 * object.dis.length;
+    length += 4 * object.vel.length;
     length += 4 * object.ttc.length;
-    return length + 34;
+    object.safetyZone.forEach((val) => {
+      length += 4 + val.length;
+    });
+    return length + 46;
   }
 
   static datatype() {
@@ -165,22 +201,26 @@ class ttcRadar_msg {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'e70fde2e65a20687ebfaaed6f2f230ff';
+    return '68796b4398ded33c3293e6153473810f';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    uint8 isObj
     uint8 numObj
     uint8[] IdObj
-    uint8[] isApproach
+    bool[] isApproach
     float32[] alpha
     float32[] posX
     float32[] posY
-    float32[] distance
-    float32[] velocity
+    float32[] dis
+    float32[] vel
     float32[] ttc
+    string[] safetyZone
+    
+    uint32 msg_counter
+    bool isObject
+    float32 distance
     
     `;
   }
@@ -191,13 +231,6 @@ class ttcRadar_msg {
       msg = {};
     }
     const resolved = new ttcRadar_msg(null);
-    if (msg.isObj !== undefined) {
-      resolved.isObj = msg.isObj;
-    }
-    else {
-      resolved.isObj = 0
-    }
-
     if (msg.numObj !== undefined) {
       resolved.numObj = msg.numObj;
     }
@@ -240,18 +273,18 @@ class ttcRadar_msg {
       resolved.posY = []
     }
 
-    if (msg.distance !== undefined) {
-      resolved.distance = msg.distance;
+    if (msg.dis !== undefined) {
+      resolved.dis = msg.dis;
     }
     else {
-      resolved.distance = []
+      resolved.dis = []
     }
 
-    if (msg.velocity !== undefined) {
-      resolved.velocity = msg.velocity;
+    if (msg.vel !== undefined) {
+      resolved.vel = msg.vel;
     }
     else {
-      resolved.velocity = []
+      resolved.vel = []
     }
 
     if (msg.ttc !== undefined) {
@@ -259,6 +292,34 @@ class ttcRadar_msg {
     }
     else {
       resolved.ttc = []
+    }
+
+    if (msg.safetyZone !== undefined) {
+      resolved.safetyZone = msg.safetyZone;
+    }
+    else {
+      resolved.safetyZone = []
+    }
+
+    if (msg.msg_counter !== undefined) {
+      resolved.msg_counter = msg.msg_counter;
+    }
+    else {
+      resolved.msg_counter = 0
+    }
+
+    if (msg.isObject !== undefined) {
+      resolved.isObject = msg.isObject;
+    }
+    else {
+      resolved.isObject = false
+    }
+
+    if (msg.distance !== undefined) {
+      resolved.distance = msg.distance;
+    }
+    else {
+      resolved.distance = 0.0
     }
 
     return resolved;

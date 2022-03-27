@@ -4,12 +4,12 @@
 #include <QWidget>
 #include <QApplication>
 #include <QTimer>
-#include <std_msgs/String.h>
 
 #include <vector>
 #include <math.h>
 #include <iostream>
 #include <ros/ros.h>
+#include <std_msgs/String.h>
 using namespace std;
 
 #include <QPixmap>
@@ -18,36 +18,34 @@ using namespace std;
 #include <QDebug>
 #include <radarscan_pkg/ttcRadar_msg.h>
 
+
 struct cordinate
 {
-    float x;
-    float y;
+  float x;
+  float y;
 };
 
-struct paramGraphic
+struct structParamGraphic
 {
-    cordinate sizeInPixel;
-    cordinate sizeInMetre;
-    cordinate sizeMarker;
-    cordinate posRadar;
-    float ratioX = 1;
-    float ratioY = 1;
-    float offset = 0;
+  cordinate sizeInPixel;
+  cordinate sizeInMetre;
+  cordinate sizeMarker;
+  cordinate posRadar;
+  float ratioX = 1;
+  float ratioY = 1;
+  float offset = 0;
 };
 
-struct Test
+struct structParamTTC
 {
-    int isObj;
-    int numObj;
-    vector<int> IdObj;
-    vector<int> isApproach;
-    vector<float> alpha;
-    vector<float> posX;
-    vector<float> posY;
-    vector<float> distance;
-    vector<float> velocity;
-    vector<float> ttc;
-    vector<QString> nameCar;
+  float accidence;
+  float warning;
+  float safety;
+  QString carNormal;
+  QString carSafety;
+  QString carWarning;
+  QString carAccidence;
+  vector<string> safetyZone;
 };
 
 namespace Ui {
@@ -58,40 +56,45 @@ class radarScan : public QWidget
 {
   Q_OBJECT
 
+
 public:
   explicit radarScan(QWidget *parent = nullptr);
   ~radarScan();
-  void chatterCallback(const std_msgs::String::ConstPtr &msg);
+  void chatterCallback(const radarscan_pkg::ttcRadar_msg &msg);
+  radarscan_pkg::ttcRadar_msg ttcRadar;
+
 
 private slots:
-    void initTimer();
-    void initGraphicRadar();
-    void addPoint(double x, double y);
-    void clearPoint();
-    void plotPoint();
-    void on_btnAdd_clicked();
-    void on_btnClr_clicked();
 
-    void on_btnFindxy_clicked();
-    void plotDetectObj();
-    float x2p(float x);
-    float y2p(float y);
-    void clearVector();
-    QString carColor(QString name);
-    float nRound(float num, int n);
-    radarscan_pkg::ttcRadar_msg  test1;
+  void initParamTTC();
+
+  void spinOnce();
+  void initTimer();
+
+  float nRound(float num, int n);
+  void initGraphicRadar();
+
+  void clearVector();
+  float x2p(float x);
+  float y2p(float y);
+  QString carColor(string name);
+  void plotDetectObj();
+  void displayParamTTC();
+
+  void on_btnClr_clicked();
+  void on_btnFindxy_clicked();
+  void on_paramTTC_clicked();
+
 
 private:
   Ui::radarScan *ui;
-  vector<double> qvX, qvY;
-  QVector<double> idObj, dis, vel, isappr, alpha, posX, posY;
-  float count = 0;
+  QImage imageRaw; // not using
+
   QTimer *timerRadar;
-  QImage imageRaw;
-  paramGraphic paramGraphicRadar;
-  Test test;
+  structParamTTC paramTTC;
 
   // graphic
+  structParamGraphic paramGraphicRadar;
   QGraphicsScene *graphicRadar;
   QGraphicsPixmapItem *radarScanBG, *markerObj;
   vector<QGraphicsPixmapItem*> vMarkerObj;
@@ -101,7 +104,6 @@ private:
   // ROS
   ros::NodeHandle n;
   ros::Subscriber sub;
-
 };
 
 #endif // RADARSCAN_H
