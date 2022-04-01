@@ -10,7 +10,7 @@ radarScan::radarScan(QWidget *parent) :
   initTimer();
   initGraphicRadar();
 
-  sub = n.subscribe("ttcRadar_Data", 1, &radarScan::chatterCallback, this) ;
+  sub = n.subscribe("Radar_Data", 1, &radarScan::chatterCallback, this) ;
   timerRadar->start(100);
 }
 
@@ -139,8 +139,10 @@ void radarScan::plotDetectObj()
 
 void radarScan::displayParamTTC()
 {
-  ui->lblTTC->setText(QString::number(nRound(ttcRadar.ttc[0],1)));
-  ui->lblVel->setText(QString::number(nRound(ttcRadar.vel[0],1)));
+  if (ttcRadar.numObj) {
+    ui->lblTTC->setText(QString::number(nRound(ttcRadar.ttc[0],1)));
+    ui->lblVel->setText(QString::number(nRound(ttcRadar.vel[0],1)));
+  }
 }
 
 void radarScan::chatterCallback(const radarscan_pkg::ttcRadar_msg &msg)
