@@ -69,7 +69,15 @@ ros/ros.h
 /home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/nodes/ros/ros.h
 std_msgs/String.h
 /home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/nodes/std_msgs/String.h
+iostream
+-
+fstream
+-
 sstream
+-
+thread
+-
+chrono
 -
 
 /home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/src/radarscan.cpp
