@@ -1,6 +1,9 @@
 <RCC>
     <qresource prefix="/radarScanBG">
         <file>RadarScanBG.png</file>
+        <file>RadarScanBG_v2/RadarScanBG_v2.png</file>
+        <file>RadarScanBG_v2/RadarScanBG_v21.png</file>
+        <file>RadarScanBG_v2/RadarScanBGfindxy.png</file>
     </qresource>
     <qresource prefix="/car">
         <file>car0.png</file>
