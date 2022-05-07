@@ -10,6 +10,7 @@
 #include <iostream>
 #include <ros/ros.h>
 #include <std_msgs/String.h>
+#include <algorithm>
 using namespace std;
 
 #include <QPixmap>
@@ -80,6 +81,7 @@ private slots:
   QString carColor(string name);
   void plotDetectObj();
   void displayParamTTC();
+  void autoDrive();
 
   void on_btnClr_clicked();
   void on_btnFindxy_clicked();
