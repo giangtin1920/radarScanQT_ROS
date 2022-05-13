@@ -9,6 +9,10 @@ float32[] vel
 float32[] ttc
 string[] safetyZone
 
+float32 ttcSpeed
+float32 ttcSteering
+string ttcKey
+
 uint32 msg_counter
 bool isObject
 float32 distance

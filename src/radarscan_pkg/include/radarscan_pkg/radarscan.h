@@ -83,8 +83,6 @@ private slots:
   void displayParamTTC();
   void autoDrive();
 
-  void on_btnClr_clicked();
-  void on_btnFindxy_clicked();
   void on_paramTTC_clicked();
 
 

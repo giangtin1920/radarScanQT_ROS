@@ -137,16 +137,34 @@ void radarScan::plotDetectObj()
     vttcObj[i]->setFont(QFont("Helvetica", 9, QFont::Bold));
     vttcObj[i]->setDefaultTextColor(carColor(ttcRadar.safetyZone[i]));
   }
+
+//  // show car*.png for each static
+//  vMarkerObj.clear();
+//  for (int i = 0; i < ttcRadar.staticPosX.size(); i++) {
+//    markerObj = new QGraphicsPixmapItem(QPixmap(":/car/car0.png"));
+//    vMarkerObj.push_back(markerObj);
+
+//    // show image radarScanBackGround in GUI
+//    graphicRadar->addItem(vMarkerObj[i]);
+//    vMarkerObj[i]->setPos(  x2p(ttcRadar.staticPosX[i])-offset, y2p(ttcRadar.staticPosY[i])-offset  );
+//  }
 }
 
 void radarScan::displayParamTTC()
 {
   QString txt = "";
-  for (int i = 0; i < ttcRadar.numObj; i++) {
-   txt = txt + "Object " + QString::number(i) + ": \n"
-       + "Distance  m   = " + QString::number(nRound(ttcRadar.dis[i],1)) + "\n"
-       + "Velocity  m/s = " + QString::number(nRound(ttcRadar.vel[i],1)) + "\n\n" ;
+  if (!ttcRadar.numObj) {
+    txt = txt + "No Tracking Objects \n";
   }
+  else {
+    txt = txt + QString::number(ttcRadar.numObj) + " Tracking Objects \n\n";
+    for (int i = 0; i < ttcRadar.numObj; i++) {
+     txt = txt + "Object " + QString::number(i) + ": \n"
+         + "Distance  m   = " + QString::number(nRound(ttcRadar.dis[i],1)) + "\n"
+         + "Velocity  m/s = " + QString::number(nRound(ttcRadar.vel[i],1)) + "\n\n" ;
+    }
+  }
+
   ui->lblTTC->setText(txt);
 
 //  if (ttcRadar.numObj) {
@@ -157,30 +175,69 @@ void radarScan::displayParamTTC()
 
 void radarScan::autoDrive()
 {
+  QString txt = "";
+  if (!ttcRadar.numObj){
+    txt = txt + "No obstacle \n\n"
+        + "speed     m/s = " + QString::number(round(ttcRadar.ttcSpeed)) + "\n"
+        + "steering  rad = " + QString::number(nRound(ttcRadar.ttcSteering,2)) + "\n"
+        + "state_key     = " + QString::fromStdString(ttcRadar.ttcKey) + "\n";
+  }
+  else {
+   txt = txt + "TTC  controller \n\n"
+       + "speed     m/s = " + QString::number(round(ttcRadar.ttcSpeed)) + "\n"
+       + "steering  rad = " + QString::number(nRound(ttcRadar.ttcSteering,2)) + "\n"
+       + "state_key     = " + QString::fromStdString(ttcRadar.ttcKey) + "\n";
+  }
+  ui->lblVel->setText(txt);
+
+/*
   vector<string> state_description;
   vector<string> state_key;
   string key = "";
   static float speed = 2.0;
   static float steering = 0.0;
+
+  // param TTCController
   float speed_max = 5.0;
-  float duty = 0;
+  float speed_steering = 5.0;
+  float steering_turn = 0.05;
+  float ratioSlowdown = 1.5;
   float X_max = 2;
   float X_min = -2;
-  float ttc_min = 5; // s
-  float dis_min = 8; // m
+  float ttc_min = 3; // s
+  float dis_min = 20; // m
 
-  float x = 0;
-  float th = 0;
-  static float cnt = 0;
+  float duty = 0;
+  static float x = 1;
+  static float th = 1;
+  static uint32_t cnt = 0, cnt1 = 0, cnt2 = 0, cnt3 = 0, numframeFilter = 20;
+
   cnt++;
+
+  // stop in 2s
+  if (speed < 1) {
+    cnt1++;
+    if (cnt1 == 40) {
+      cnt1 = 0;
+      speed = 2.0;
+      x = 1.5; th = 0;
+    }
+    else state_key.push_back("k");
+  }
 
   // tracking and warning dangerous objects.
   if (!ttcRadar.numObj) {
-    state_description.push_back("no obstacle");
-    state_key.push_back("i");
-    speed = 5.0;
-    steering = 0;
-    x = 1; th = 0;
+    // filter for slow down the speed
+    cnt3++;
+    if (cnt3 == numframeFilter) {
+      cnt3 = 0;
+      state_description.push_back("no obstacle");
+      state_key.push_back("none");
+//      speed = speed_max;
+      steering = 0;
+      x = 1.5; th = 0;
+    }
+    else {state_description.push_back("no obstacle"); state_key.push_back("none");}
   }
   else {
 
@@ -190,13 +247,13 @@ void radarScan::autoDrive()
       if (ttcRadar.safetyZone[i] == "carAccidence" || ttcRadar.safetyZone[i] == "carWarning") {
 
         // duty is the period of deceleration between 2 consecutive times. it changes depending on the object distance.
-        duty = round(ttcRadar.dis[i]/0.8);
+        duty = round(ttcRadar.dis[i]/ratioSlowdown);
         if (duty < 1) duty = 1;
 
         if (ttcRadar.posX[i] > X_min && ttcRadar.posX[i] < X_max) {
           state_description.push_back("front");
           if (ttcRadar.dis[i] < dis_min) {
-            if (cnt == round(cnt/duty)*duty)
+            if (cnt == (cnt/duty)*duty)
               state_key.push_back("x"); else state_key.push_back("i");
           }
           else state_key.push_back("i");
@@ -205,8 +262,8 @@ void radarScan::autoDrive()
           state_description.push_back("right");
           if (ttcRadar.ttc[i] < ttc_min) {
             state_key.push_back("u");
-            speed = 2.0;
-            steering = 0.05;
+            speed = speed_steering;
+            steering = steering_turn;
           }
           else state_key.push_back("i");
         }
@@ -214,19 +271,25 @@ void radarScan::autoDrive()
           state_description.push_back("left");
           if (ttcRadar.ttc[i] < ttc_min) {
             state_key.push_back("o");
-            speed = 2.0;
-            steering = 0.05;
+            speed = speed_steering;
+            steering = steering_turn;
           }
           else state_key.push_back("i");
         }
         else state_description.push_back("unknown state_description");
       }
       else {
-        state_description.push_back("no obstacle");
-        state_key.push_back("i");
-        speed = 5.0;
-        steering = 0;
-        x = 1; th = 0;
+        // filter for slow down the speed
+        cnt2++;
+        if (cnt2 == numframeFilter) {
+          cnt2 = 0;
+          state_description.push_back("no obstacle");
+          state_key.push_back("none");
+//          speed = speed_max;
+          steering = 0;
+          x = 1.5; th = 0;
+        }
+        else {state_description.push_back("no obstacle"); state_key.push_back("none");}
       }
     }
   }
@@ -252,6 +315,7 @@ void radarScan::autoDrive()
   static vector<string> key_ou{"o", "u"};
   static vector<string> key_ox{"o", "x"};
   static vector<string> key_ux{"u", "x"};
+  static vector<string> key_none{"none"};
 
   if (state_key == key_i) {x = 1; th = 0; key = "i";}
   else if (state_key == key_o) {x = 1; th = 1; key = "o";}
@@ -263,13 +327,12 @@ void radarScan::autoDrive()
   else if (state_key == key_ou) {x = 1; th = 0; key = "ou";}
   else if (state_key == key_ox) {x = 1; th = 1; key = "ox";}
   else if (state_key == key_ux) {x = 1; th = -1; key = "ux";}
-  else {x = 0; th = 0; key = "k";}
+  else if (state_key == key_none) {key = "none";}
 
   speed = x * speed;
   steering = th * steering;
 
   if (abs(speed) > speed_max) speed = speed_max;
-
 
   QString txt = "";
   if (!ttcRadar.numObj){
@@ -287,13 +350,14 @@ void radarScan::autoDrive()
        + "counter       = " + QString::number(cnt) + "\n";
   }
   ui->lblVel->setText(txt);
-
+*/
 
 }
 
 void radarScan::chatterCallback(const radarscan_pkg::ttcRadar_msg &msg)
 {
   ttcRadar = msg;
+  ttcRadar.safetyZone.clear();
   clearVector();
 //  ROS_INFO("I heard: %f", ttcRadar.ttc[0]);
 
@@ -319,23 +383,6 @@ void radarScan::chatterCallback(const radarscan_pkg::ttcRadar_msg &msg)
 
 /*--------- private slots in GUI -------------------*/
 
-void radarScan::on_btnClr_clicked()
-{
-
-}
-
-void radarScan::on_btnFindxy_clicked()
-{
-
-//    clrCurrent.red();
-//    clrCurrent.green();
-//    clrCurrent.blue();
-
-//    qInfo() << clrCurrent.red();
-//    qInfo() << clrCurrent.green();
-//    qInfo() << clrCurrent.blue();
-
-}
 
 void radarScan::on_paramTTC_clicked()
 {

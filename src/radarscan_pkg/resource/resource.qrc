@@ -6,11 +6,11 @@
         <file>RadarScanBG_v2/RadarScanBGfindxy.png</file>
     </qresource>
     <qresource prefix="/car">
-        <file>car0.png</file>
         <file>carAccidence.png</file>
         <file>carNormal.png</file>
         <file>carSafety.png</file>
         <file>carWarning.png</file>
         <file>carIcon.ico</file>
+        <file>car0.png</file>
     </qresource>
 </RCC>
