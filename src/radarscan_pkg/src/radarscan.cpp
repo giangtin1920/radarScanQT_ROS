@@ -138,16 +138,16 @@ void radarScan::plotDetectObj()
     vttcObj[i]->setDefaultTextColor(carColor(ttcRadar.safetyZone[i]));
   }
 
-//  // show car*.png for each static
-//  vMarkerObj.clear();
-//  for (int i = 0; i < ttcRadar.staticPosX.size(); i++) {
-//    markerObj = new QGraphicsPixmapItem(QPixmap(":/car/car0.png"));
-//    vMarkerObj.push_back(markerObj);
+  // show car*.png for each static
+  vMarkerObj.clear();
+  for (int i = 0; i < ttcRadar.ptX.size(); i++) {
+    markerObj = new QGraphicsPixmapItem(QPixmap(":/car/car0.png"));
+    vMarkerObj.push_back(markerObj);
 
-//    // show image radarScanBackGround in GUI
-//    graphicRadar->addItem(vMarkerObj[i]);
-//    vMarkerObj[i]->setPos(  x2p(ttcRadar.staticPosX[i])-offset, y2p(ttcRadar.staticPosY[i])-offset  );
-//  }
+    // show image radarScanBackGround in GUI
+    graphicRadar->addItem(vMarkerObj[i]);
+    vMarkerObj[i]->setPos(  x2p(ttcRadar.ptX[i]) - 7, y2p(ttcRadar.ptY[i]) - 7 );
+  }
 }
 
 void radarScan::displayParamTTC()

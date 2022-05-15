@@ -54,6 +54,9 @@ CMAKE_BINARY_DIR = /home/giangtin/aev/radarScanQT_ROS/build
 include radarscan_pkg/CMakeFiles/talker_autogen.dir/progress.make
 
 radarscan_pkg/CMakeFiles/talker_autogen: /home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/RadarScanBG.png
+radarscan_pkg/CMakeFiles/talker_autogen: /home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/RadarScanBG_v2/RadarScanBG_v2.png
+radarscan_pkg/CMakeFiles/talker_autogen: /home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/RadarScanBG_v2/RadarScanBG_v21.png
+radarscan_pkg/CMakeFiles/talker_autogen: /home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/RadarScanBG_v2/RadarScanBGfindxy.png
 radarscan_pkg/CMakeFiles/talker_autogen: /home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/car0.png
 radarscan_pkg/CMakeFiles/talker_autogen: /home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/carAccidence.png
 radarscan_pkg/CMakeFiles/talker_autogen: /home/giangtin/aev/radarScanQT_ROS/src/radarscan_pkg/resource/carIcon.ico

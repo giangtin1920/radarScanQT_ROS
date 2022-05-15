@@ -8,7 +8,7 @@ import struct
 
 
 class ttcRadar_msg(genpy.Message):
-  _md5sum = "68796b4398ded33c3293e6153473810f"
+  _md5sum = "4ae422de06917b166d8b65b9c0eee85f"
   _type = "radarscan_pkg/ttcRadar_msg"
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """uint8 numObj
@@ -21,13 +21,20 @@ float32[] dis
 float32[] vel
 float32[] ttc
 string[] safetyZone
+float32[] ptX
+float32[] ptY
+float32[] ptZ
+
+float32 ttcSpeed
+float32 ttcSteering
+string ttcKey
 
 uint32 msg_counter
 bool isObject
 float32 distance
 """
-  __slots__ = ['numObj','IdObj','isApproach','alpha','posX','posY','dis','vel','ttc','safetyZone','msg_counter','isObject','distance']
-  _slot_types = ['uint8','uint8[]','bool[]','float32[]','float32[]','float32[]','float32[]','float32[]','float32[]','string[]','uint32','bool','float32']
+  __slots__ = ['numObj','IdObj','isApproach','alpha','posX','posY','dis','vel','ttc','safetyZone','ptX','ptY','ptZ','ttcSpeed','ttcSteering','ttcKey','msg_counter','isObject','distance']
+  _slot_types = ['uint8','uint8[]','bool[]','float32[]','float32[]','float32[]','float32[]','float32[]','float32[]','string[]','float32[]','float32[]','float32[]','float32','float32','string','uint32','bool','float32']
 
   def __init__(self, *args, **kwds):
     """
@@ -37,7 +44,7 @@ float32 distance
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       numObj,IdObj,isApproach,alpha,posX,posY,dis,vel,ttc,safetyZone,msg_counter,isObject,distance
+       numObj,IdObj,isApproach,alpha,posX,posY,dis,vel,ttc,safetyZone,ptX,ptY,ptZ,ttcSpeed,ttcSteering,ttcKey,msg_counter,isObject,distance
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -66,6 +73,18 @@ float32 distance
         self.ttc = []
       if self.safetyZone is None:
         self.safetyZone = []
+      if self.ptX is None:
+        self.ptX = []
+      if self.ptY is None:
+        self.ptY = []
+      if self.ptZ is None:
+        self.ptZ = []
+      if self.ttcSpeed is None:
+        self.ttcSpeed = 0.
+      if self.ttcSteering is None:
+        self.ttcSteering = 0.
+      if self.ttcKey is None:
+        self.ttcKey = ''
       if self.msg_counter is None:
         self.msg_counter = 0
       if self.isObject is None:
@@ -83,6 +102,12 @@ float32 distance
       self.vel = []
       self.ttc = []
       self.safetyZone = []
+      self.ptX = []
+      self.ptY = []
+      self.ptZ = []
+      self.ttcSpeed = 0.
+      self.ttcSteering = 0.
+      self.ttcKey = ''
       self.msg_counter = 0
       self.isObject = False
       self.distance = 0.
@@ -144,6 +169,26 @@ float32 distance
           val1 = val1.encode('utf-8')
           length = len(val1)
         buff.write(struct.Struct('<I%ss'%length).pack(length, val1))
+      length = len(self.ptX)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sf'%length
+      buff.write(struct.Struct(pattern).pack(*self.ptX))
+      length = len(self.ptY)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sf'%length
+      buff.write(struct.Struct(pattern).pack(*self.ptY))
+      length = len(self.ptZ)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sf'%length
+      buff.write(struct.Struct(pattern).pack(*self.ptZ))
+      _x = self
+      buff.write(_get_struct_2f().pack(_x.ttcSpeed, _x.ttcSteering))
+      _x = self.ttcKey
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
       buff.write(_get_struct_IBf().pack(_x.msg_counter, _x.isObject, _x.distance))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
@@ -239,6 +284,43 @@ float32 distance
         else:
           val1 = str[start:end]
         self.safetyZone.append(val1)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sf'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.ptX = s.unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sf'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.ptY = s.unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sf'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.ptZ = s.unpack(str[start:end])
+      _x = self
+      start = end
+      end += 8
+      (_x.ttcSpeed, _x.ttcSteering,) = _get_struct_2f().unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.ttcKey = str[start:end].decode('utf-8', 'rosmsg')
+      else:
+        self.ttcKey = str[start:end]
       _x = self
       start = end
       end += 9
@@ -301,6 +383,26 @@ float32 distance
           val1 = val1.encode('utf-8')
           length = len(val1)
         buff.write(struct.Struct('<I%ss'%length).pack(length, val1))
+      length = len(self.ptX)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sf'%length
+      buff.write(self.ptX.tostring())
+      length = len(self.ptY)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sf'%length
+      buff.write(self.ptY.tostring())
+      length = len(self.ptZ)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sf'%length
+      buff.write(self.ptZ.tostring())
+      _x = self
+      buff.write(_get_struct_2f().pack(_x.ttcSpeed, _x.ttcSteering))
+      _x = self.ttcKey
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
       buff.write(_get_struct_IBf().pack(_x.msg_counter, _x.isObject, _x.distance))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
@@ -397,6 +499,43 @@ float32 distance
         else:
           val1 = str[start:end]
         self.safetyZone.append(val1)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sf'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.ptX = numpy.frombuffer(str[start:end], dtype=numpy.float32, count=length)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sf'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.ptY = numpy.frombuffer(str[start:end], dtype=numpy.float32, count=length)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sf'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.ptZ = numpy.frombuffer(str[start:end], dtype=numpy.float32, count=length)
+      _x = self
+      start = end
+      end += 8
+      (_x.ttcSpeed, _x.ttcSteering,) = _get_struct_2f().unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.ttcKey = str[start:end].decode('utf-8', 'rosmsg')
+      else:
+        self.ttcKey = str[start:end]
       _x = self
       start = end
       end += 9
@@ -410,6 +549,12 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
+_struct_2f = None
+def _get_struct_2f():
+    global _struct_2f
+    if _struct_2f is None:
+        _struct_2f = struct.Struct("<2f")
+    return _struct_2f
 _struct_B = None
 def _get_struct_B():
     global _struct_B

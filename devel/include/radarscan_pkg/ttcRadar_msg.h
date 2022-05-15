@@ -34,6 +34,12 @@ struct ttcRadar_msg_
     , vel()
     , ttc()
     , safetyZone()
+    , ptX()
+    , ptY()
+    , ptZ()
+    , ttcSpeed(0.0)
+    , ttcSteering(0.0)
+    , ttcKey()
     , msg_counter(0)
     , isObject(false)
     , distance(0.0)  {
@@ -49,6 +55,12 @@ struct ttcRadar_msg_
     , vel(_alloc)
     , ttc(_alloc)
     , safetyZone(_alloc)
+    , ptX(_alloc)
+    , ptY(_alloc)
+    , ptZ(_alloc)
+    , ttcSpeed(0.0)
+    , ttcSteering(0.0)
+    , ttcKey(_alloc)
     , msg_counter(0)
     , isObject(false)
     , distance(0.0)  {
@@ -86,6 +98,24 @@ struct ttcRadar_msg_
 
    typedef std::vector<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > , typename ContainerAllocator::template rebind<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::other >  _safetyZone_type;
   _safetyZone_type safetyZone;
+
+   typedef std::vector<float, typename ContainerAllocator::template rebind<float>::other >  _ptX_type;
+  _ptX_type ptX;
+
+   typedef std::vector<float, typename ContainerAllocator::template rebind<float>::other >  _ptY_type;
+  _ptY_type ptY;
+
+   typedef std::vector<float, typename ContainerAllocator::template rebind<float>::other >  _ptZ_type;
+  _ptZ_type ptZ;
+
+   typedef float _ttcSpeed_type;
+  _ttcSpeed_type ttcSpeed;
+
+   typedef float _ttcSteering_type;
+  _ttcSteering_type ttcSteering;
+
+   typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _ttcKey_type;
+  _ttcKey_type ttcKey;
 
    typedef uint32_t _msg_counter_type;
   _msg_counter_type msg_counter;
@@ -135,6 +165,12 @@ bool operator==(const ::radarscan_pkg::ttcRadar_msg_<ContainerAllocator1> & lhs,
     lhs.vel == rhs.vel &&
     lhs.ttc == rhs.ttc &&
     lhs.safetyZone == rhs.safetyZone &&
+    lhs.ptX == rhs.ptX &&
+    lhs.ptY == rhs.ptY &&
+    lhs.ptZ == rhs.ptZ &&
+    lhs.ttcSpeed == rhs.ttcSpeed &&
+    lhs.ttcSteering == rhs.ttcSteering &&
+    lhs.ttcKey == rhs.ttcKey &&
     lhs.msg_counter == rhs.msg_counter &&
     lhs.isObject == rhs.isObject &&
     lhs.distance == rhs.distance;
@@ -194,12 +230,12 @@ struct MD5Sum< ::radarscan_pkg::ttcRadar_msg_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "68796b4398ded33c3293e6153473810f";
+    return "4ae422de06917b166d8b65b9c0eee85f";
   }
 
   static const char* value(const ::radarscan_pkg::ttcRadar_msg_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x68796b4398ded33cULL;
-  static const uint64_t static_value2 = 0x3293e6153473810fULL;
+  static const uint64_t static_value1 = 0x4ae422de06917b16ULL;
+  static const uint64_t static_value2 = 0x6d8b65b9c0eee85fULL;
 };
 
 template<class ContainerAllocator>
@@ -228,6 +264,13 @@ struct Definition< ::radarscan_pkg::ttcRadar_msg_<ContainerAllocator> >
 "float32[] vel\n"
 "float32[] ttc\n"
 "string[] safetyZone\n"
+"float32[] ptX\n"
+"float32[] ptY\n"
+"float32[] ptZ\n"
+"\n"
+"float32 ttcSpeed\n"
+"float32 ttcSteering\n"
+"string ttcKey\n"
 "\n"
 "uint32 msg_counter\n"
 "bool isObject\n"
@@ -260,6 +303,12 @@ namespace serialization
       stream.next(m.vel);
       stream.next(m.ttc);
       stream.next(m.safetyZone);
+      stream.next(m.ptX);
+      stream.next(m.ptY);
+      stream.next(m.ptZ);
+      stream.next(m.ttcSpeed);
+      stream.next(m.ttcSteering);
+      stream.next(m.ttcKey);
       stream.next(m.msg_counter);
       stream.next(m.isObject);
       stream.next(m.distance);
@@ -337,6 +386,30 @@ struct Printer< ::radarscan_pkg::ttcRadar_msg_<ContainerAllocator> >
       s << indent << "  safetyZone[" << i << "]: ";
       Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.safetyZone[i]);
     }
+    s << indent << "ptX[]" << std::endl;
+    for (size_t i = 0; i < v.ptX.size(); ++i)
+    {
+      s << indent << "  ptX[" << i << "]: ";
+      Printer<float>::stream(s, indent + "  ", v.ptX[i]);
+    }
+    s << indent << "ptY[]" << std::endl;
+    for (size_t i = 0; i < v.ptY.size(); ++i)
+    {
+      s << indent << "  ptY[" << i << "]: ";
+      Printer<float>::stream(s, indent + "  ", v.ptY[i]);
+    }
+    s << indent << "ptZ[]" << std::endl;
+    for (size_t i = 0; i < v.ptZ.size(); ++i)
+    {
+      s << indent << "  ptZ[" << i << "]: ";
+      Printer<float>::stream(s, indent + "  ", v.ptZ[i]);
+    }
+    s << indent << "ttcSpeed: ";
+    Printer<float>::stream(s, indent + "  ", v.ttcSpeed);
+    s << indent << "ttcSteering: ";
+    Printer<float>::stream(s, indent + "  ", v.ttcSteering);
+    s << indent << "ttcKey: ";
+    Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.ttcKey);
     s << indent << "msg_counter: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.msg_counter);
     s << indent << "isObject: ";

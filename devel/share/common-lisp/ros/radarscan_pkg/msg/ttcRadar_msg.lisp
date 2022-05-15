@@ -57,6 +57,36 @@
     :initarg :safetyZone
     :type (cl:vector cl:string)
    :initform (cl:make-array 0 :element-type 'cl:string :initial-element ""))
+   (ptX
+    :reader ptX
+    :initarg :ptX
+    :type (cl:vector cl:float)
+   :initform (cl:make-array 0 :element-type 'cl:float :initial-element 0.0))
+   (ptY
+    :reader ptY
+    :initarg :ptY
+    :type (cl:vector cl:float)
+   :initform (cl:make-array 0 :element-type 'cl:float :initial-element 0.0))
+   (ptZ
+    :reader ptZ
+    :initarg :ptZ
+    :type (cl:vector cl:float)
+   :initform (cl:make-array 0 :element-type 'cl:float :initial-element 0.0))
+   (ttcSpeed
+    :reader ttcSpeed
+    :initarg :ttcSpeed
+    :type cl:float
+    :initform 0.0)
+   (ttcSteering
+    :reader ttcSteering
+    :initarg :ttcSteering
+    :type cl:float
+    :initform 0.0)
+   (ttcKey
+    :reader ttcKey
+    :initarg :ttcKey
+    :type cl:string
+    :initform "")
    (msg_counter
     :reader msg_counter
     :initarg :msg_counter
@@ -131,6 +161,36 @@
 (cl:defmethod safetyZone-val ((m <ttcRadar_msg>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader radarscan_pkg-msg:safetyZone-val is deprecated.  Use radarscan_pkg-msg:safetyZone instead.")
   (safetyZone m))
+
+(cl:ensure-generic-function 'ptX-val :lambda-list '(m))
+(cl:defmethod ptX-val ((m <ttcRadar_msg>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader radarscan_pkg-msg:ptX-val is deprecated.  Use radarscan_pkg-msg:ptX instead.")
+  (ptX m))
+
+(cl:ensure-generic-function 'ptY-val :lambda-list '(m))
+(cl:defmethod ptY-val ((m <ttcRadar_msg>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader radarscan_pkg-msg:ptY-val is deprecated.  Use radarscan_pkg-msg:ptY instead.")
+  (ptY m))
+
+(cl:ensure-generic-function 'ptZ-val :lambda-list '(m))
+(cl:defmethod ptZ-val ((m <ttcRadar_msg>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader radarscan_pkg-msg:ptZ-val is deprecated.  Use radarscan_pkg-msg:ptZ instead.")
+  (ptZ m))
+
+(cl:ensure-generic-function 'ttcSpeed-val :lambda-list '(m))
+(cl:defmethod ttcSpeed-val ((m <ttcRadar_msg>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader radarscan_pkg-msg:ttcSpeed-val is deprecated.  Use radarscan_pkg-msg:ttcSpeed instead.")
+  (ttcSpeed m))
+
+(cl:ensure-generic-function 'ttcSteering-val :lambda-list '(m))
+(cl:defmethod ttcSteering-val ((m <ttcRadar_msg>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader radarscan_pkg-msg:ttcSteering-val is deprecated.  Use radarscan_pkg-msg:ttcSteering instead.")
+  (ttcSteering m))
+
+(cl:ensure-generic-function 'ttcKey-val :lambda-list '(m))
+(cl:defmethod ttcKey-val ((m <ttcRadar_msg>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader radarscan_pkg-msg:ttcKey-val is deprecated.  Use radarscan_pkg-msg:ttcKey instead.")
+  (ttcKey m))
 
 (cl:ensure-generic-function 'msg_counter-val :lambda-list '(m))
 (cl:defmethod msg_counter-val ((m <ttcRadar_msg>))
@@ -241,6 +301,55 @@
     (cl:write-byte (cl:ldb (cl:byte 8 24) __ros_str_len) ostream))
   (cl:map cl:nil #'(cl:lambda (c) (cl:write-byte (cl:char-code c) ostream)) ele))
    (cl:slot-value msg 'safetyZone))
+  (cl:let ((__ros_arr_len (cl:length (cl:slot-value msg 'ptX))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) __ros_arr_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) __ros_arr_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) __ros_arr_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) __ros_arr_len) ostream))
+  (cl:map cl:nil #'(cl:lambda (ele) (cl:let ((bits (roslisp-utils:encode-single-float-bits ele)))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)))
+   (cl:slot-value msg 'ptX))
+  (cl:let ((__ros_arr_len (cl:length (cl:slot-value msg 'ptY))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) __ros_arr_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) __ros_arr_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) __ros_arr_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) __ros_arr_len) ostream))
+  (cl:map cl:nil #'(cl:lambda (ele) (cl:let ((bits (roslisp-utils:encode-single-float-bits ele)))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)))
+   (cl:slot-value msg 'ptY))
+  (cl:let ((__ros_arr_len (cl:length (cl:slot-value msg 'ptZ))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) __ros_arr_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) __ros_arr_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) __ros_arr_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) __ros_arr_len) ostream))
+  (cl:map cl:nil #'(cl:lambda (ele) (cl:let ((bits (roslisp-utils:encode-single-float-bits ele)))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)))
+   (cl:slot-value msg 'ptZ))
+  (cl:let ((bits (roslisp-utils:encode-single-float-bits (cl:slot-value msg 'ttcSpeed))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-single-float-bits (cl:slot-value msg 'ttcSteering))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream))
+  (cl:let ((__ros_str_len (cl:length (cl:slot-value msg 'ttcKey))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) __ros_str_len) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) __ros_str_len) ostream))
+  (cl:map cl:nil #'(cl:lambda (c) (cl:write-byte (cl:char-code c) ostream)) (cl:slot-value msg 'ttcKey))
   (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'msg_counter)) ostream)
   (cl:write-byte (cl:ldb (cl:byte 8 8) (cl:slot-value msg 'msg_counter)) ostream)
   (cl:write-byte (cl:ldb (cl:byte 8 16) (cl:slot-value msg 'msg_counter)) ostream)
@@ -373,6 +482,68 @@
       (cl:setf (cl:aref vals i) (cl:make-string __ros_str_len))
       (cl:dotimes (__ros_str_idx __ros_str_len msg)
         (cl:setf (cl:char (cl:aref vals i) __ros_str_idx) (cl:code-char (cl:read-byte istream))))))))
+  (cl:let ((__ros_arr_len 0))
+    (cl:setf (cl:ldb (cl:byte 8 0) __ros_arr_len) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 8) __ros_arr_len) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 16) __ros_arr_len) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 24) __ros_arr_len) (cl:read-byte istream))
+  (cl:setf (cl:slot-value msg 'ptX) (cl:make-array __ros_arr_len))
+  (cl:let ((vals (cl:slot-value msg 'ptX)))
+    (cl:dotimes (i __ros_arr_len)
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+    (cl:setf (cl:aref vals i) (roslisp-utils:decode-single-float-bits bits))))))
+  (cl:let ((__ros_arr_len 0))
+    (cl:setf (cl:ldb (cl:byte 8 0) __ros_arr_len) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 8) __ros_arr_len) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 16) __ros_arr_len) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 24) __ros_arr_len) (cl:read-byte istream))
+  (cl:setf (cl:slot-value msg 'ptY) (cl:make-array __ros_arr_len))
+  (cl:let ((vals (cl:slot-value msg 'ptY)))
+    (cl:dotimes (i __ros_arr_len)
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+    (cl:setf (cl:aref vals i) (roslisp-utils:decode-single-float-bits bits))))))
+  (cl:let ((__ros_arr_len 0))
+    (cl:setf (cl:ldb (cl:byte 8 0) __ros_arr_len) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 8) __ros_arr_len) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 16) __ros_arr_len) (cl:read-byte istream))
+    (cl:setf (cl:ldb (cl:byte 8 24) __ros_arr_len) (cl:read-byte istream))
+  (cl:setf (cl:slot-value msg 'ptZ) (cl:make-array __ros_arr_len))
+  (cl:let ((vals (cl:slot-value msg 'ptZ)))
+    (cl:dotimes (i __ros_arr_len)
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+    (cl:setf (cl:aref vals i) (roslisp-utils:decode-single-float-bits bits))))))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'ttcSpeed) (roslisp-utils:decode-single-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'ttcSteering) (roslisp-utils:decode-single-float-bits bits)))
+    (cl:let ((__ros_str_len 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) __ros_str_len) (cl:read-byte istream))
+      (cl:setf (cl:slot-value msg 'ttcKey) (cl:make-string __ros_str_len))
+      (cl:dotimes (__ros_str_idx __ros_str_len msg)
+        (cl:setf (cl:char (cl:slot-value msg 'ttcKey) __ros_str_idx) (cl:code-char (cl:read-byte istream)))))
     (cl:setf (cl:ldb (cl:byte 8 0) (cl:slot-value msg 'msg_counter)) (cl:read-byte istream))
     (cl:setf (cl:ldb (cl:byte 8 8) (cl:slot-value msg 'msg_counter)) (cl:read-byte istream))
     (cl:setf (cl:ldb (cl:byte 8 16) (cl:slot-value msg 'msg_counter)) (cl:read-byte istream))
@@ -394,16 +565,16 @@
   "radarscan_pkg/ttcRadar_msg")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<ttcRadar_msg>)))
   "Returns md5sum for a message object of type '<ttcRadar_msg>"
-  "68796b4398ded33c3293e6153473810f")
+  "4ae422de06917b166d8b65b9c0eee85f")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'ttcRadar_msg)))
   "Returns md5sum for a message object of type 'ttcRadar_msg"
-  "68796b4398ded33c3293e6153473810f")
+  "4ae422de06917b166d8b65b9c0eee85f")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<ttcRadar_msg>)))
   "Returns full string definition for message of type '<ttcRadar_msg>"
-  (cl:format cl:nil "uint8 numObj~%uint8[] IdObj~%bool[] isApproach~%float32[] alpha~%float32[] posX~%float32[] posY~%float32[] dis~%float32[] vel~%float32[] ttc~%string[] safetyZone~%~%uint32 msg_counter~%bool isObject~%float32 distance~%~%~%"))
+  (cl:format cl:nil "uint8 numObj~%uint8[] IdObj~%bool[] isApproach~%float32[] alpha~%float32[] posX~%float32[] posY~%float32[] dis~%float32[] vel~%float32[] ttc~%string[] safetyZone~%float32[] ptX~%float32[] ptY~%float32[] ptZ~%~%float32 ttcSpeed~%float32 ttcSteering~%string ttcKey~%~%uint32 msg_counter~%bool isObject~%float32 distance~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'ttcRadar_msg)))
   "Returns full string definition for message of type 'ttcRadar_msg"
-  (cl:format cl:nil "uint8 numObj~%uint8[] IdObj~%bool[] isApproach~%float32[] alpha~%float32[] posX~%float32[] posY~%float32[] dis~%float32[] vel~%float32[] ttc~%string[] safetyZone~%~%uint32 msg_counter~%bool isObject~%float32 distance~%~%~%"))
+  (cl:format cl:nil "uint8 numObj~%uint8[] IdObj~%bool[] isApproach~%float32[] alpha~%float32[] posX~%float32[] posY~%float32[] dis~%float32[] vel~%float32[] ttc~%string[] safetyZone~%float32[] ptX~%float32[] ptY~%float32[] ptZ~%~%float32 ttcSpeed~%float32 ttcSteering~%string ttcKey~%~%uint32 msg_counter~%bool isObject~%float32 distance~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <ttcRadar_msg>))
   (cl:+ 0
      1
@@ -416,6 +587,12 @@
      4 (cl:reduce #'cl:+ (cl:slot-value msg 'vel) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 4)))
      4 (cl:reduce #'cl:+ (cl:slot-value msg 'ttc) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 4)))
      4 (cl:reduce #'cl:+ (cl:slot-value msg 'safetyZone) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 4 (cl:length ele))))
+     4 (cl:reduce #'cl:+ (cl:slot-value msg 'ptX) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 4)))
+     4 (cl:reduce #'cl:+ (cl:slot-value msg 'ptY) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 4)))
+     4 (cl:reduce #'cl:+ (cl:slot-value msg 'ptZ) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 4)))
+     4
+     4
+     4 (cl:length (cl:slot-value msg 'ttcKey))
      4
      1
      4
@@ -433,6 +610,12 @@
     (cl:cons ':vel (vel msg))
     (cl:cons ':ttc (ttc msg))
     (cl:cons ':safetyZone (safetyZone msg))
+    (cl:cons ':ptX (ptX msg))
+    (cl:cons ':ptY (ptY msg))
+    (cl:cons ':ptZ (ptZ msg))
+    (cl:cons ':ttcSpeed (ttcSpeed msg))
+    (cl:cons ':ttcSteering (ttcSteering msg))
+    (cl:cons ':ttcKey (ttcKey msg))
     (cl:cons ':msg_counter (msg_counter msg))
     (cl:cons ':isObject (isObject msg))
     (cl:cons ':distance (distance msg))

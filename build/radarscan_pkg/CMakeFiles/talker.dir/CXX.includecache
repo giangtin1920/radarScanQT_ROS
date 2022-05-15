@@ -53,6 +53,8 @@ ros/ros.h
 -
 std_msgs/String.h
 -
+algorithm
+-
 QPixmap
 -
 QGraphicsScene
@@ -1966,6 +1968,10 @@ qgraphicsscene.h
 qgraphicsview.h
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgraphicsview.h
 
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QHBoxLayout
+qboxlayout.h
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qboxlayout.h
+
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QHeaderView
 qheaderview.h
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qheaderview.h
@@ -1981,6 +1987,10 @@ qpushbutton.h
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QTextEdit
 qtextedit.h
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtextedit.h
+
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QVBoxLayout
+qboxlayout.h
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qboxlayout.h
 
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget
 qwidget.h
@@ -2076,6 +2086,16 @@ QtWidgets/qdesktopwidget.h
 QtGui/qguiapplication.h
 -
 
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qboxlayout.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qlayout.h
+-
+QtWidgets/qwidget.h
+-
+limits.h
+-
+
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qbuttongroup.h
 QtWidgets/qtwidgetsglobal.h
 -
@@ -2142,6 +2162,16 @@ QtWidgets/qscrollarea.h
 QtWidgets/qgraphicsscene.h
 -
 
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgridlayout.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qlayout.h
+-
+QtWidgets/qwidget.h
+-
+limits.h
+-
+
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qheaderview.h
 QtWidgets/qtwidgetsglobal.h
 -
@@ -2152,6 +2182,36 @@ QtWidgets/qabstractitemview.h
 QtWidgets/qtwidgetsglobal.h
 -
 QtWidgets/qframe.h
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlayout.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtCore/qobject.h
+-
+QtWidgets/qlayoutitem.h
+-
+QtWidgets/qsizepolicy.h
+-
+QtCore/qrect.h
+-
+QtCore/qmargins.h
+-
+limits.h
+-
+QtWidgets/qboxlayout.h
+-
+QtWidgets/qgridlayout.h
+-
+
+/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlayoutitem.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qsizepolicy.h
+-
+QtCore/qrect.h
+-
+limits.h
 -
 
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qpushbutton.h
@@ -2311,6 +2371,8 @@ QtWidgets/QButtonGroup
 -
 QtWidgets/QGraphicsView
 -
+QtWidgets/QHBoxLayout
+-
 QtWidgets/QHeaderView
 -
 QtWidgets/QLabel
@@ -2318,6 +2380,8 @@ QtWidgets/QLabel
 QtWidgets/QPushButton
 -
 QtWidgets/QTextEdit
+-
+QtWidgets/QVBoxLayout
 -
 QtWidgets/QWidget
 -

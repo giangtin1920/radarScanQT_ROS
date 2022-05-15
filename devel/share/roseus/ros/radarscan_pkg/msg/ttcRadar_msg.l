@@ -14,7 +14,7 @@
 
 (defclass radarscan_pkg::ttcRadar_msg
   :super ros::object
-  :slots (_numObj _IdObj _isApproach _alpha _posX _posY _dis _vel _ttc _safetyZone _msg_counter _isObject _distance ))
+  :slots (_numObj _IdObj _isApproach _alpha _posX _posY _dis _vel _ttc _safetyZone _ptX _ptY _ptZ _ttcSpeed _ttcSteering _ttcKey _msg_counter _isObject _distance ))
 
 (defmethod radarscan_pkg::ttcRadar_msg
   (:init
@@ -29,6 +29,12 @@
     ((:vel __vel) (make-array 0 :initial-element 0.0 :element-type :float))
     ((:ttc __ttc) (make-array 0 :initial-element 0.0 :element-type :float))
     ((:safetyZone __safetyZone) (let (r) (dotimes (i 0) (push "" r)) r))
+    ((:ptX __ptX) (make-array 0 :initial-element 0.0 :element-type :float))
+    ((:ptY __ptY) (make-array 0 :initial-element 0.0 :element-type :float))
+    ((:ptZ __ptZ) (make-array 0 :initial-element 0.0 :element-type :float))
+    ((:ttcSpeed __ttcSpeed) 0.0)
+    ((:ttcSteering __ttcSteering) 0.0)
+    ((:ttcKey __ttcKey) "")
     ((:msg_counter __msg_counter) 0)
     ((:isObject __isObject) nil)
     ((:distance __distance) 0.0)
@@ -44,6 +50,12 @@
    (setq _vel __vel)
    (setq _ttc __ttc)
    (setq _safetyZone __safetyZone)
+   (setq _ptX __ptX)
+   (setq _ptY __ptY)
+   (setq _ptZ __ptZ)
+   (setq _ttcSpeed (float __ttcSpeed))
+   (setq _ttcSteering (float __ttcSteering))
+   (setq _ttcKey (string __ttcKey))
    (setq _msg_counter (round __msg_counter))
    (setq _isObject __isObject)
    (setq _distance (float __distance))
@@ -78,6 +90,24 @@
   (:safetyZone
    (&optional __safetyZone)
    (if __safetyZone (setq _safetyZone __safetyZone)) _safetyZone)
+  (:ptX
+   (&optional __ptX)
+   (if __ptX (setq _ptX __ptX)) _ptX)
+  (:ptY
+   (&optional __ptY)
+   (if __ptY (setq _ptY __ptY)) _ptY)
+  (:ptZ
+   (&optional __ptZ)
+   (if __ptZ (setq _ptZ __ptZ)) _ptZ)
+  (:ttcSpeed
+   (&optional __ttcSpeed)
+   (if __ttcSpeed (setq _ttcSpeed __ttcSpeed)) _ttcSpeed)
+  (:ttcSteering
+   (&optional __ttcSteering)
+   (if __ttcSteering (setq _ttcSteering __ttcSteering)) _ttcSteering)
+  (:ttcKey
+   (&optional __ttcKey)
+   (if __ttcKey (setq _ttcKey __ttcKey)) _ttcKey)
   (:msg_counter
    (&optional __msg_counter)
    (if __msg_counter (setq _msg_counter __msg_counter)) _msg_counter)
@@ -110,6 +140,18 @@
     (* 4    (length _ttc)) 4
     ;; string[] _safetyZone
     (apply #'+ (mapcar #'(lambda (x) (+ 4 (length x))) _safetyZone)) 4
+    ;; float32[] _ptX
+    (* 4    (length _ptX)) 4
+    ;; float32[] _ptY
+    (* 4    (length _ptY)) 4
+    ;; float32[] _ptZ
+    (* 4    (length _ptZ)) 4
+    ;; float32 _ttcSpeed
+    4
+    ;; float32 _ttcSteering
+    4
+    ;; string _ttcKey
+    4 (length _ttcKey)
     ;; uint32 _msg_counter
     4
     ;; bool _isObject
@@ -166,6 +208,27 @@
      (dolist (elem _safetyZone)
        (write-long (length elem) s) (princ elem s)
        )
+     ;; float32[] _ptX
+     (write-long (length _ptX) s)
+     (dotimes (i (length _ptX))
+       (sys::poke (elt _ptX i) (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
+       )
+     ;; float32[] _ptY
+     (write-long (length _ptY) s)
+     (dotimes (i (length _ptY))
+       (sys::poke (elt _ptY i) (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
+       )
+     ;; float32[] _ptZ
+     (write-long (length _ptZ) s)
+     (dotimes (i (length _ptZ))
+       (sys::poke (elt _ptZ i) (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
+       )
+     ;; float32 _ttcSpeed
+       (sys::poke _ttcSpeed (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
+     ;; float32 _ttcSteering
+       (sys::poke _ttcSteering (send s :buffer) (send s :count) :float) (incf (stream-count s) 4)
+     ;; string _ttcKey
+       (write-long (length _ttcKey) s) (princ _ttcKey s)
      ;; uint32 _msg_counter
        (write-long _msg_counter s)
      ;; bool _isObject
@@ -238,6 +301,33 @@
      (dotimes (i n)
      (let (n) (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4) (setf (elt _safetyZone i) (subseq buf ptr- (+ ptr- n))) (incf ptr- n))
      ))
+   ;; float32[] _ptX
+   (let (n)
+     (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4)
+     (setq _ptX (instantiate float-vector n))
+     (dotimes (i n)
+     (setf (elt _ptX i) (sys::peek buf ptr- :float)) (incf ptr- 4)
+     ))
+   ;; float32[] _ptY
+   (let (n)
+     (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4)
+     (setq _ptY (instantiate float-vector n))
+     (dotimes (i n)
+     (setf (elt _ptY i) (sys::peek buf ptr- :float)) (incf ptr- 4)
+     ))
+   ;; float32[] _ptZ
+   (let (n)
+     (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4)
+     (setq _ptZ (instantiate float-vector n))
+     (dotimes (i n)
+     (setf (elt _ptZ i) (sys::peek buf ptr- :float)) (incf ptr- 4)
+     ))
+   ;; float32 _ttcSpeed
+     (setq _ttcSpeed (sys::peek buf ptr- :float)) (incf ptr- 4)
+   ;; float32 _ttcSteering
+     (setq _ttcSteering (sys::peek buf ptr- :float)) (incf ptr- 4)
+   ;; string _ttcKey
+     (let (n) (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4) (setq _ttcKey (subseq buf ptr- (+ ptr- n))) (incf ptr- n))
    ;; uint32 _msg_counter
      (setq _msg_counter (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;; bool _isObject
@@ -248,7 +338,7 @@
    self)
   )
 
-(setf (get radarscan_pkg::ttcRadar_msg :md5sum-) "68796b4398ded33c3293e6153473810f")
+(setf (get radarscan_pkg::ttcRadar_msg :md5sum-) "4ae422de06917b166d8b65b9c0eee85f")
 (setf (get radarscan_pkg::ttcRadar_msg :datatype-) "radarscan_pkg/ttcRadar_msg")
 (setf (get radarscan_pkg::ttcRadar_msg :definition-)
       "uint8 numObj
@@ -261,6 +351,13 @@ float32[] dis
 float32[] vel
 float32[] ttc
 string[] safetyZone
+float32[] ptX
+float32[] ptY
+float32[] ptZ
+
+float32 ttcSpeed
+float32 ttcSteering
+string ttcKey
 
 uint32 msg_counter
 bool isObject
@@ -270,6 +367,6 @@ float32 distance
 
 
 
-(provide :radarscan_pkg/ttcRadar_msg "68796b4398ded33c3293e6153473810f")
+(provide :radarscan_pkg/ttcRadar_msg "4ae422de06917b166d8b65b9c0eee85f")
 
 

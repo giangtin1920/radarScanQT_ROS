@@ -19,6 +19,18 @@
           TTC
           SAFETYZONE-VAL
           SAFETYZONE
+          PTX-VAL
+          PTX
+          PTY-VAL
+          PTY
+          PTZ-VAL
+          PTZ
+          TTCSPEED-VAL
+          TTCSPEED
+          TTCSTEERING-VAL
+          TTCSTEERING
+          TTCKEY-VAL
+          TTCKEY
           MSG_COUNTER-VAL
           MSG_COUNTER
           ISOBJECT-VAL

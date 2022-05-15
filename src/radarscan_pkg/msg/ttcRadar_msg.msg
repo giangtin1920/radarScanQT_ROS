@@ -8,6 +8,9 @@ float32[] dis
 float32[] vel
 float32[] ttc
 string[] safetyZone
+float32[] ptX
+float32[] ptY
+float32[] ptZ
 
 float32 ttcSpeed
 float32 ttcSteering

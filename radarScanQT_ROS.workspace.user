@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.9.2, 2022-04-06T22:51:03. -->
+<!-- Written by QtCreator 4.9.2, 2022-05-14T18:15:57. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -67,7 +67,7 @@
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{e047b270-ab7d-4963-9012-7bfa0196a613}</value>
    <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
-   <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">2</value>
+   <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">1</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory"></value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
@@ -105,21 +105,21 @@
     <value type="int" key="ProjectExplorer.BuildConfiguration.BuildStepListCount">2</value>
     <value type="bool" key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment">false</value>
     <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges">
-     <value type="QString">CMAKE_PREFIX_PATH=/home/giangtin/aev/radarScanQT_ROS/devel:/home/giangtin/aev/simulation_ws/devel:/home/giangtin/Downloads/obstacleAvoidanceRobot/catkin_ws/devel:/home/giangtin/aev/aev_ws/devel:/home/giangtin/catkin_ws/devel:/opt/ros/melodic</value>
-     <value type="QString">LD_LIBRARY_PATH=/home/giangtin/aev/radarScanQT_ROS/devel/lib:/home/giangtin/aev/simulation_ws/devel/lib:/home/giangtin/Downloads/obstacleAvoidanceRobot/catkin_ws/devel/lib:/home/giangtin/aev/aev_ws/devel/lib:/home/giangtin/catkin_ws/devel/lib:/opt/ros/melodic/lib</value>
+     <value type="QString">CMAKE_PREFIX_PATH=/home/giangtin/aev/radarScanQT_ROS/devel:/home/giangtin/aev/simulation_ws/devel:/home/giangtin/aev/aev_ws/devel:/home/giangtin/catkin_ws/devel:/opt/ros/melodic</value>
+     <value type="QString">LD_LIBRARY_PATH=/home/giangtin/aev/radarScanQT_ROS/devel/lib:/home/giangtin/aev/simulation_ws/devel/lib:/home/giangtin/aev/aev_ws/devel/lib:/home/giangtin/catkin_ws/devel/lib:/opt/ros/melodic/lib</value>
      <value type="QString">PATH=/opt/ros/melodic/bin:/home/giangtin/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</value>
-     <value type="QString">PKG_CONFIG_PATH=/home/giangtin/aev/radarScanQT_ROS/devel/lib/pkgconfig:/home/giangtin/aev/simulation_ws/devel/lib/pkgconfig:/home/giangtin/Downloads/obstacleAvoidanceRobot/catkin_ws/devel/lib/pkgconfig:/home/giangtin/aev/aev_ws/devel/lib/pkgconfig:/home/giangtin/catkin_ws/devel/lib/pkgconfig:/opt/ros/melodic/lib/pkgconfig</value>
+     <value type="QString">PKG_CONFIG_PATH=/home/giangtin/aev/radarScanQT_ROS/devel/lib/pkgconfig:/home/giangtin/aev/simulation_ws/devel/lib/pkgconfig:/home/giangtin/aev/aev_ws/devel/lib/pkgconfig:/home/giangtin/catkin_ws/devel/lib/pkgconfig:/opt/ros/melodic/lib/pkgconfig</value>
      <value type="QString">PWD=/home/giangtin/aev/radarScanQT_ROS</value>
-     <value type="QString">PYTHONPATH=/home/giangtin/aev/radarScanQT_ROS/devel/lib/python2.7/dist-packages:/home/giangtin/aev/simulation_ws/devel/lib/python2.7/dist-packages:/home/giangtin/Downloads/obstacleAvoidanceRobot/catkin_ws/devel/lib/python2.7/dist-packages:/home/giangtin/aev/aev_ws/devel/lib/python2.7/dist-packages:/opt/ros/melodic/lib/python2.7/dist-packages</value>
-     <value type="QString">ROSLISP_PACKAGE_DIRECTORIES=/home/giangtin/aev/radarScanQT_ROS/devel/share/common-lisp:/home/giangtin/aev/simulation_ws/devel/share/common-lisp:/home/giangtin/Downloads/obstacleAvoidanceRobot/catkin_ws/devel/share/common-lisp:/home/giangtin/aev/aev_ws/devel/share/common-lisp:/home/giangtin/catkin_ws/devel/share/common-lisp</value>
+     <value type="QString">PYTHONPATH=/home/giangtin/aev/radarScanQT_ROS/devel/lib/python2.7/dist-packages:/home/giangtin/aev/simulation_ws/devel/lib/python2.7/dist-packages:/home/giangtin/aev/aev_ws/devel/lib/python2.7/dist-packages:/opt/ros/melodic/lib/python2.7/dist-packages</value>
+     <value type="QString">ROSLISP_PACKAGE_DIRECTORIES=/home/giangtin/aev/radarScanQT_ROS/devel/share/common-lisp:/home/giangtin/aev/simulation_ws/devel/share/common-lisp:/home/giangtin/aev/aev_ws/devel/share/common-lisp:/home/giangtin/catkin_ws/devel/share/common-lisp</value>
      <value type="QString">ROS_DISTRO=melodic</value>
      <value type="QString">ROS_ETC_DIR=/opt/ros/melodic/etc/ros</value>
      <value type="QString">ROS_MASTER_URI=http://localhost:11311</value>
-     <value type="QString">ROS_PACKAGE_PATH=/home/giangtin/aev/radarScanQT_ROS/src:/home/giangtin/aev/simulation_ws/src:/home/giangtin/Downloads/obstacleAvoidanceRobot/catkin_ws/src:/home/giangtin/aev/aev_ws/src:/home/giangtin/catkin_ws/src:/opt/ros/melodic/share</value>
+     <value type="QString">ROS_PACKAGE_PATH=/home/giangtin/aev/radarScanQT_ROS/src:/home/giangtin/aev/simulation_ws/src:/home/giangtin/aev/aev_ws/src:/home/giangtin/catkin_ws/src:/opt/ros/melodic/share</value>
      <value type="QString">ROS_PYTHON_VERSION=2</value>
      <value type="QString">ROS_ROOT=/opt/ros/melodic/share/ros</value>
      <value type="QString">ROS_VERSION=1</value>
-     <value type="QString">SHLVL=540</value>
+     <value type="QString">SHLVL=754</value>
      <value type="QString">TERM=xterm</value>
      <value type="QString">_=/usr/bin/env</value>
     </valuelist>

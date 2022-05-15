@@ -28,6 +28,12 @@ class ttcRadar_msg {
       this.vel = null;
       this.ttc = null;
       this.safetyZone = null;
+      this.ptX = null;
+      this.ptY = null;
+      this.ptZ = null;
+      this.ttcSpeed = null;
+      this.ttcSteering = null;
+      this.ttcKey = null;
       this.msg_counter = null;
       this.isObject = null;
       this.distance = null;
@@ -93,6 +99,42 @@ class ttcRadar_msg {
       else {
         this.safetyZone = [];
       }
+      if (initObj.hasOwnProperty('ptX')) {
+        this.ptX = initObj.ptX
+      }
+      else {
+        this.ptX = [];
+      }
+      if (initObj.hasOwnProperty('ptY')) {
+        this.ptY = initObj.ptY
+      }
+      else {
+        this.ptY = [];
+      }
+      if (initObj.hasOwnProperty('ptZ')) {
+        this.ptZ = initObj.ptZ
+      }
+      else {
+        this.ptZ = [];
+      }
+      if (initObj.hasOwnProperty('ttcSpeed')) {
+        this.ttcSpeed = initObj.ttcSpeed
+      }
+      else {
+        this.ttcSpeed = 0.0;
+      }
+      if (initObj.hasOwnProperty('ttcSteering')) {
+        this.ttcSteering = initObj.ttcSteering
+      }
+      else {
+        this.ttcSteering = 0.0;
+      }
+      if (initObj.hasOwnProperty('ttcKey')) {
+        this.ttcKey = initObj.ttcKey
+      }
+      else {
+        this.ttcKey = '';
+      }
       if (initObj.hasOwnProperty('msg_counter')) {
         this.msg_counter = initObj.msg_counter
       }
@@ -136,6 +178,18 @@ class ttcRadar_msg {
     bufferOffset = _arraySerializer.float32(obj.ttc, buffer, bufferOffset, null);
     // Serialize message field [safetyZone]
     bufferOffset = _arraySerializer.string(obj.safetyZone, buffer, bufferOffset, null);
+    // Serialize message field [ptX]
+    bufferOffset = _arraySerializer.float32(obj.ptX, buffer, bufferOffset, null);
+    // Serialize message field [ptY]
+    bufferOffset = _arraySerializer.float32(obj.ptY, buffer, bufferOffset, null);
+    // Serialize message field [ptZ]
+    bufferOffset = _arraySerializer.float32(obj.ptZ, buffer, bufferOffset, null);
+    // Serialize message field [ttcSpeed]
+    bufferOffset = _serializer.float32(obj.ttcSpeed, buffer, bufferOffset);
+    // Serialize message field [ttcSteering]
+    bufferOffset = _serializer.float32(obj.ttcSteering, buffer, bufferOffset);
+    // Serialize message field [ttcKey]
+    bufferOffset = _serializer.string(obj.ttcKey, buffer, bufferOffset);
     // Serialize message field [msg_counter]
     bufferOffset = _serializer.uint32(obj.msg_counter, buffer, bufferOffset);
     // Serialize message field [isObject]
@@ -169,6 +223,18 @@ class ttcRadar_msg {
     data.ttc = _arrayDeserializer.float32(buffer, bufferOffset, null)
     // Deserialize message field [safetyZone]
     data.safetyZone = _arrayDeserializer.string(buffer, bufferOffset, null)
+    // Deserialize message field [ptX]
+    data.ptX = _arrayDeserializer.float32(buffer, bufferOffset, null)
+    // Deserialize message field [ptY]
+    data.ptY = _arrayDeserializer.float32(buffer, bufferOffset, null)
+    // Deserialize message field [ptZ]
+    data.ptZ = _arrayDeserializer.float32(buffer, bufferOffset, null)
+    // Deserialize message field [ttcSpeed]
+    data.ttcSpeed = _deserializer.float32(buffer, bufferOffset);
+    // Deserialize message field [ttcSteering]
+    data.ttcSteering = _deserializer.float32(buffer, bufferOffset);
+    // Deserialize message field [ttcKey]
+    data.ttcKey = _deserializer.string(buffer, bufferOffset);
     // Deserialize message field [msg_counter]
     data.msg_counter = _deserializer.uint32(buffer, bufferOffset);
     // Deserialize message field [isObject]
@@ -191,7 +257,11 @@ class ttcRadar_msg {
     object.safetyZone.forEach((val) => {
       length += 4 + val.length;
     });
-    return length + 46;
+    length += 4 * object.ptX.length;
+    length += 4 * object.ptY.length;
+    length += 4 * object.ptZ.length;
+    length += object.ttcKey.length;
+    return length + 70;
   }
 
   static datatype() {
@@ -201,7 +271,7 @@ class ttcRadar_msg {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '68796b4398ded33c3293e6153473810f';
+    return '4ae422de06917b166d8b65b9c0eee85f';
   }
 
   static messageDefinition() {
@@ -217,6 +287,13 @@ class ttcRadar_msg {
     float32[] vel
     float32[] ttc
     string[] safetyZone
+    float32[] ptX
+    float32[] ptY
+    float32[] ptZ
+    
+    float32 ttcSpeed
+    float32 ttcSteering
+    string ttcKey
     
     uint32 msg_counter
     bool isObject
@@ -299,6 +376,48 @@ class ttcRadar_msg {
     }
     else {
       resolved.safetyZone = []
+    }
+
+    if (msg.ptX !== undefined) {
+      resolved.ptX = msg.ptX;
+    }
+    else {
+      resolved.ptX = []
+    }
+
+    if (msg.ptY !== undefined) {
+      resolved.ptY = msg.ptY;
+    }
+    else {
+      resolved.ptY = []
+    }
+
+    if (msg.ptZ !== undefined) {
+      resolved.ptZ = msg.ptZ;
+    }
+    else {
+      resolved.ptZ = []
+    }
+
+    if (msg.ttcSpeed !== undefined) {
+      resolved.ttcSpeed = msg.ttcSpeed;
+    }
+    else {
+      resolved.ttcSpeed = 0.0
+    }
+
+    if (msg.ttcSteering !== undefined) {
+      resolved.ttcSteering = msg.ttcSteering;
+    }
+    else {
+      resolved.ttcSteering = 0.0
+    }
+
+    if (msg.ttcKey !== undefined) {
+      resolved.ttcKey = msg.ttcKey;
+    }
+    else {
+      resolved.ttcKey = ''
     }
 
     if (msg.msg_counter !== undefined) {

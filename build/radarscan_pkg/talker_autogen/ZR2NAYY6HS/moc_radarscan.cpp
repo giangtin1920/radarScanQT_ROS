@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_radarScan_t {
-    QByteArrayData data[22];
-    char stringdata0[207];
+    QByteArrayData data[21];
+    char stringdata0[178];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -50,17 +50,15 @@ QT_MOC_LITERAL(15, 106, 6), // "string"
 QT_MOC_LITERAL(16, 113, 4), // "name"
 QT_MOC_LITERAL(17, 118, 13), // "plotDetectObj"
 QT_MOC_LITERAL(18, 132, 15), // "displayParamTTC"
-QT_MOC_LITERAL(19, 148, 17), // "on_btnClr_clicked"
-QT_MOC_LITERAL(20, 166, 20), // "on_btnFindxy_clicked"
-QT_MOC_LITERAL(21, 187, 19) // "on_paramTTC_clicked"
+QT_MOC_LITERAL(19, 148, 9), // "autoDrive"
+QT_MOC_LITERAL(20, 158, 19) // "on_paramTTC_clicked"
 
     },
     "radarScan\0initParamTTC\0\0spinOnce\0"
     "initTimer\0nRound\0num\0n\0initGraphicRadar\0"
     "clearVector\0x2p\0x\0y2p\0y\0carColor\0"
     "string\0name\0plotDetectObj\0displayParamTTC\0"
-    "on_btnClr_clicked\0on_btnFindxy_clicked\0"
-    "on_paramTTC_clicked"
+    "autoDrive\0on_paramTTC_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -70,7 +68,7 @@ static const uint qt_meta_data_radarScan[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      14,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -78,20 +76,19 @@ static const uint qt_meta_data_radarScan[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   84,    2, 0x08 /* Private */,
-       3,    0,   85,    2, 0x08 /* Private */,
-       4,    0,   86,    2, 0x08 /* Private */,
-       5,    2,   87,    2, 0x08 /* Private */,
-       8,    0,   92,    2, 0x08 /* Private */,
-       9,    0,   93,    2, 0x08 /* Private */,
-      10,    1,   94,    2, 0x08 /* Private */,
-      12,    1,   97,    2, 0x08 /* Private */,
-      14,    1,  100,    2, 0x08 /* Private */,
-      17,    0,  103,    2, 0x08 /* Private */,
-      18,    0,  104,    2, 0x08 /* Private */,
-      19,    0,  105,    2, 0x08 /* Private */,
-      20,    0,  106,    2, 0x08 /* Private */,
-      21,    0,  107,    2, 0x08 /* Private */,
+       1,    0,   79,    2, 0x08 /* Private */,
+       3,    0,   80,    2, 0x08 /* Private */,
+       4,    0,   81,    2, 0x08 /* Private */,
+       5,    2,   82,    2, 0x08 /* Private */,
+       8,    0,   87,    2, 0x08 /* Private */,
+       9,    0,   88,    2, 0x08 /* Private */,
+      10,    1,   89,    2, 0x08 /* Private */,
+      12,    1,   92,    2, 0x08 /* Private */,
+      14,    1,   95,    2, 0x08 /* Private */,
+      17,    0,   98,    2, 0x08 /* Private */,
+      18,    0,   99,    2, 0x08 /* Private */,
+      19,    0,  100,    2, 0x08 /* Private */,
+      20,    0,  101,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -103,7 +100,6 @@ static const uint qt_meta_data_radarScan[] = {
     QMetaType::Float, QMetaType::Float,   11,
     QMetaType::Float, QMetaType::Float,   13,
     QMetaType::QString, 0x80000000 | 15,   16,
-    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -133,9 +129,8 @@ void radarScan::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         case 9: _t->plotDetectObj(); break;
         case 10: _t->displayParamTTC(); break;
-        case 11: _t->on_btnClr_clicked(); break;
-        case 12: _t->on_btnFindxy_clicked(); break;
-        case 13: _t->on_paramTTC_clicked(); break;
+        case 11: _t->autoDrive(); break;
+        case 12: _t->on_paramTTC_clicked(); break;
         default: ;
         }
     }
@@ -166,13 +161,13 @@ int radarScan::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 14)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 14;
+        _id -= 13;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 14)
+        if (_id < 13)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 14;
+        _id -= 13;
     }
     return _id;
 }
