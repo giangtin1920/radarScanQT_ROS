@@ -178,13 +178,13 @@ void radarScan::autoDrive()
   QString txt = "";
   if (!ttcRadar.numObj){
     txt = txt + "No obstacle \n\n"
-        + "speed     m/s = " + QString::number(round(ttcRadar.ttcSpeed)) + "\n"
+        + "speed     km/h = " + QString::number(round(ttcRadar.ttcSpeed)) + "\n"
         + "steering  rad = " + QString::number(nRound(ttcRadar.ttcSteering,2)) + "\n"
         + "state_key     = " + QString::fromStdString(ttcRadar.ttcKey) + "\n";
   }
   else {
    txt = txt + "TTC  controller \n\n"
-       + "speed     m/s = " + QString::number(round(ttcRadar.ttcSpeed)) + "\n"
+       + "speed     km/h = " + QString::number(round(ttcRadar.ttcSpeed)) + "\n"
        + "steering  rad = " + QString::number(nRound(ttcRadar.ttcSteering,2)) + "\n"
        + "state_key     = " + QString::fromStdString(ttcRadar.ttcKey) + "\n";
   }
@@ -337,14 +337,14 @@ void radarScan::autoDrive()
   QString txt = "";
   if (!ttcRadar.numObj){
     txt = txt + QString::fromStdString(state_description[0]) + "\n"
-        + "speed     m/s = " + QString::number(round(speed)) + "\n"
+        + "speed     km/h = " + QString::number(round(speed)) + "\n"
         + "steering  rad = " + QString::number(nRound(steering,2)) + "\n"
         + "state_key     = " + QString::fromStdString(key) + "\n"
         + "counter       = " + QString::number(cnt) + "\n";
   }
   else {
    txt = txt + "TTC  controller \n"
-       + "speed     m/s = " + QString::number(round(speed)) + "\n"
+       + "speed     km/h = " + QString::number(round(speed)) + "\n"
        + "steering  rad = " + QString::number(nRound(steering,2)) + "\n"
        + "state_key     = " + QString::fromStdString(key) + "\n"
        + "counter       = " + QString::number(cnt) + "\n";
@@ -359,7 +359,7 @@ void radarScan::chatterCallback(const radarscan_pkg::ttcRadar_msg &msg)
   ttcRadar = msg;
   ttcRadar.safetyZone.clear();
   clearVector();
-//  ROS_INFO("I heard: %f", ttcRadar.ttc[0]);
+//  ROS_INFO("I heard: %d", ttcRadar.isApproach[0]);
 
   for (int i = 0; i < ttcRadar.numObj; i++) {
     if (!ttcRadar.isApproach[i])
